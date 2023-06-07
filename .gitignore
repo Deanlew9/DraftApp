@@ -1,0 +1,9 @@
+# created by virtualenv automatically
+venv/*
+
+# ide configuration files
+.vscode/*
+.idea/
+
+# other
+application_service/config/local.settings.toml
