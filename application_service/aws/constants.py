@@ -6,8 +6,7 @@ class AWSServiceNames:
     DYNAMO = "dynamodb"
 
 class SecretKeys:
-    PASSWORD = ""
+    PASSWORD = "password"
 
 class SecretNames:
-    MONGO_DEV = ""
-    MONGO = ""
+    MONGO_DEV = "mongo_dev"
