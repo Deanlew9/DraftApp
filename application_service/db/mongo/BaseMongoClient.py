@@ -1,5 +1,7 @@
 # ------------------------------------------------------------------- External-imports -----------------------------------------------
 from pymongo import MongoClient as PyMongoClient
+from urllib.parse import quote_plus
+
 # ------------------------------------------------------------------- Local-imports --------------------------------------------------
 from application_service.config.Config import settings
 from application_service.aws.constants import SecretKeys, SecretNames
@@ -26,9 +28,10 @@ class MongoClient:
         self.CLIENT_ADDRESS = env_settings.MONGO_ADDRESS
 
     def _init_client(self, secrets_manager):
-        pwd = secrets_manager.get_secret(self.MONGO_SECRET_NAME).get(SecretKeys.PASSWORD)
-        client_srv = f"mongodb+srv://{self.MONGO_USER}:{pwd}@{self.CLIENT_ADDRESS}/{self.MONGO_USER}?retryWrites=true"
-        client = PyMongoClient(client_srv)
+        secret = secrets_manager.get_secret(self.MONGO_SECRET_NAME)
+        pwd = secret.get(SecretKeys.PASSWORD)
+        uri = f"mongodb+srv://{self.MONGO_USER}:{quote_plus(pwd)}@{self.CLIENT_ADDRESS}/?retryWrites=true&w=majority"
+        client = PyMongoClient(uri)
         client.server_info()
         return client
 

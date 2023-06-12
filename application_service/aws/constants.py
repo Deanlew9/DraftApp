@@ -1,4 +1,4 @@
-REGION_NAME = "eu-central-1"
+REGION_NAME = "us-east-1"
 
 class AWSServiceNames:
     SECRET_MANAGER = "secretsmanager"
