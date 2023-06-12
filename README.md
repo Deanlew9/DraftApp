@@ -1,4 +1,4 @@
-# DraftApp (BE)
+# Draftool (BE)
 
 As a songwriter, it's essential for me to record my ideas whenever inspiration strikes throughout the day. This could involve jotting down lyrics, recording myself humming a melody or playing an instrument while singing, or even capturing photos or videos as a creative outlet.
 
