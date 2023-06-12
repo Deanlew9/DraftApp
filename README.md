@@ -13,7 +13,7 @@ Setting up:
 4. Create an AWS user.
 5. Add the AWS credentials to `~/.cred/draft_app_aws.json`
 6. Create a MongoDB cluster.
-7. Add the MongoDB password to SecretsManager in AWS under secret name "mongo_dev" as an object {"password", <password>} (replace <password> with the password).
+7. Add the MongoDB password to SecretsManager in AWS under secret name "mongo_dev" as an object `{"password", <password>}` (replace <password> with the password).
 8. Run `$ touch application_service/config/local.settings.toml` and add this code to it:
   ```
 [default]
