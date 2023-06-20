@@ -20,10 +20,10 @@ class DraftsDAO(BaseCollection):
     DATABASE_NAME = DatabaseNames.MAIN
     COLLECTION_NAME = CollectionNames.USER_DRAFTS
     FIELD_NAMES = Item.field_names()
-    INDEXES = [(FIELD_NAMES.draft_uuid, -1), (FIELD_NAMES.user_uuid, -1)]
+    INDEXES = [(FIELD_NAMES.draft_uuid, -1), (FIELD_NAMES.user_id, -1)]
 
-    def get_user_drafts(self, user_uuid: str) -> Optional[list]:
-        drafts = self.collection.find({self.FIELD_NAMES.user_uuid: user_uuid}, {"_id": 0})
+    def get_user_drafts(self, user_id: str) -> Optional[list]:
+        drafts = self.collection.find({self.FIELD_NAMES.user_id: user_id}, {"_id": 0})
         return list(drafts) if drafts else None
 
     def get_draft_components(self, draft_uuid: str) -> Optional[list]:

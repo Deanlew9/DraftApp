@@ -41,15 +41,14 @@ class UpdateDraftComponentsParams(BaseDataClass):
 
 class CreateDraftBusinessProcess(BaseBusinessProcess):
 
-    def _verify(self, params: CreateDraftParams) -> bool:
-        if len(params.draft_name) == 0:
+    def _verify(self, params: dict) -> bool:
+        if len(params[CreateDraftParams.field_names().draft_name]) == 0:
             self.response = DraftResponses.INVALID_DRAFT_PARAMETERS
             return False
         return True
 
-    def _action(self, params: CreateDraftParams) -> Any:
-        draft = params.dict()
-        response = DraftsDAO().collection.insert_one(draft)
+    def _action(self, params: dict) -> Any:
+        response = DraftsDAO().collection.insert_one(params)
         if not response:
             self.response = DraftResponses.FAILED_TO_INSERT_ITEM_INTO_DB
             self.success = False
@@ -60,11 +59,10 @@ class CreateDraftBusinessProcess(BaseBusinessProcess):
 
 class UpdateDraftComponentsBusinessProcess(BaseBusinessProcess):
 
-    def _verify(self, params: UpdateDraftComponentsParams) -> bool:
+    def _verify(self, params: dict) -> bool:
         return True
 
-    def _action(self, params: CreateDraftParams) -> Any:
-        params = params.dict()
+    def _action(self, params: dict) -> Any:
         response = DraftsDAO().update_draft_component(params["draft_uuid"], params["components"])
         if not response:
             self.response = DraftResponses.FAILED_FOR_SOME_REASON
