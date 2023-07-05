@@ -7,3 +7,6 @@ venv/*
 
 # other
 application_service/config/local.settings.toml
+
+# aws:
+aws_credentials.json
